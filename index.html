@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Charity360 | Dapp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="favicon.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- <script type="text/javascript" src="./dist/web3.min.js"></script> -->
+    <script type="text/javascript" src="./dist/ethereumjs-util.js"></script>
+    <!-- <script src=”https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script> -->
+    <!-- <script src="./index.js"></script> -->
+</head>
+
+<body>
+
+    <script>
+
+          window.addEventListener("load", function() {
+    console.log("My web3");
+    console.log(window)
+    console.log(Web3.givenProvider);
+    console.log(Web3);
+
+     if (typeof web3 !== "undefined") {
+      // Use Mist/MetaMask's provider
+      window.web3 = new Web3(web3.currentProvider);
+    } else {
+      console.log("No web3? You should consider trying MetaMask!");
+    }
+  })
+
+        
+        
+        </script>
+
+    <style>
+    body{
+        color: #00404f !important;
+    }
+    .navbar{
+        padding: .5rem 3rem;
+    }
+    .time{
+        padding: 0px 15px;
+        border: 4px solid orange;
+        border-radius: 50px;
+        min-width: 100px;
+        min-height: 100px;
+        padding-top: 30px;
+        margin: 10px 40px;
+    }
+    #Hours{
+        color: gray;
+    }
+    #Minutes{
+        color: gray;
+    }
+    #Seconds{
+        color: gray;
+    }    
+    </style>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light" style="color: #6effc4;  background-color: #15273b;">
+        <div>
+            <a class="navbar-brand" href="#">
+                <img src="./favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">
+            </a>
+            <a class="navbar-brand" href="#" style="position:relative;top: 13px;">
+               <h4 style="color:#6effc4;"> Charity360</h4>
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="my-5 p-4">
+            <div class="row">
+                <div class="col-4" style="position:relative;top:35px">
+                    <h4 class="text-center" style="color:gray">3 Ethers</h4>
+                    <h4 class="text-center">Your Donations</h4>
+                </div>
+                <div class="col-4" style="position:relative;top:35px">
+                    <h4 class="text-center" style="color:gray">30 Ethers</h4>
+                    <h4 class="text-center">Total Donations</h4>
+                </div>
+                <div class="col-4" style="position:relative;top:35px">
+                    <h4 class="text-center" style="color:gray">12</h4>
+                    <h4 class="text-center">Total Proposals</h4>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 p-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class=" d-inline-block">
+                        <div class="time">
+                            <h3 id="Hours">2</h3>
+                        </div>
+                        <div>
+                            <h6>Hours</h6>
+                        </div>
+                    </div>
+                    <div class=" d-inline-block">
+                        <div class="time">
+                            <h3 id="Minutes">2</h3>
+                        </div>
+                        <div>
+                            <h6>Minutes</h4>
+                        </div>
+                    </div>
+                    <div class=" d-inline-block">
+                        <div class="time">
+                            <h3 id="Seconds">2</h3>
+                        </div>
+                        <div>
+                            <h6>Seconds</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 p-4 border">
+            <h4 class="mb-4" for="exampleInputEmail1">Submit Proposal for Charity</h4>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Proposal</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Total Votes</th>
+                        <th scope="col">Up Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>Danish</td>
+                        <td>Psoposal 1</td>
+                        <td>0xCf78bBf76545B7134FcceD0D11b69c17e2923b5c</td>
+                        <td>2</td>
+                        <td>
+                            <button id="upvote" class="btn btn-success">Vote</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="my-5 p-4 border">
+                    <form>
+                        <div class="form-group">
+                            <h4 for="exampleInputEmail1">Donate in Charity</h4><br>
+                            <input type="number" class="form-control" id="donateAmount" aria-describedby="emailHelp"
+                                placeholder="Enter amount to donate">
+                            <small id="emailHelp" class="form-text text-muted">This amount will be donated to the
+                                Charity
+                                Poll</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Donate</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class=" mb-5 p-4 border">
+
+                    <form>
+                        <div class="form-group">
+                            <h4 for="exampleInputEmail1">Submit Proposal for Charity</h4><br>
+                            <input type="text" class="form-control" id="donateAmount" aria-describedby="emailHelp" placeholder="Your Name">
+                            <small id="emailHelp" class="form-text text-muted">Enter your name</small><br>
+                            <input type="text" class="form-control" id="donateAmount" aria-describedby="emailHelp" placeholder="Description for proposal">
+                            <small id="emailHelp" class="form-text text-muted">Write a message why you wants to submit charity proposal</small><br>
+                            <input type="number" class="form-control" id="donateAmount" aria-describedby="emailHelp" placeholder="Amount">
+                            <small id="emailHelp" class="form-text text-muted">Enter amount you wants to take</small><br>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Jan 5, 2019 15:37:25").getTime();
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+            // Get todays date and time
+            var now = new Date().getTime();
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Output the result in an element with id="demo"
+            document.getElementById("Hours").innerHTML = hours;
+            document.getElementById("Minutes").innerHTML = minutes;
+            document.getElementById("Seconds").innerHTML = seconds;
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
