@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Charity360 | Dapp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="favicon.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script type="text/javascript" src="./dist/web3.min.js"></script>
+    <script type="text/javascript" src="./dist/ethereumjs-util.js"></script>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <script>
+
+    </script>
+
+    <style>
+        body{
+        color: #00404f !important;
+    }
+    .navbar{
+        padding: .5rem 3rem;
+    }
+    .time{
+        padding: 0px 15px;
+        border: 4px solid orange;
+        border-radius: 50px;
+        min-width: 100px;
+        min-height: 100px;
+        padding-top: 30px;
+        margin: 10px 40px;
+    }
+    #Hours{
+        color: gray;
+    }
+    #Minutes{
+        color: gray;
+    }
+    #Seconds{
+        color: gray;
+    }    
+    .gray{
+        color: gray;
+    }
+    .black{
+        color: #00404f !important;
+    }
+    </style>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light" style="color: #6effc4;  background-color: #15273b;">
+        <div>
+            <a class="navbar-brand" href="#">
+                <img src="./favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">
+            </a>
+            <a class="navbar-brand" href="#" style="position:relative;top: 13px;">
+                <h4 style="color:#6effc4;"> Charity360</h4>
+            </a>
+            <div class="navbar-brand" href="#" style="position:relative;top: 13px;">
+                <button type="button" class="btn btn-success" onclick="finalize()">Finalize</button>
+            </div>
+
+        </div>
+    </nav>
+    <div class="container">
+        <div class="my-5 p-4">
+            <div class="row">
+                <div class="col-12" style="position:relative;top:35px">
+                    <h4 class="text-center gray">Your Ethereum Address:
+                        <span class="black" id="ethAddress"></span>
+                    </h4>
+                    <h4 class="text-center gray">Your Ethereum Balance:
+                        <span class="black" id="ethBalance"></span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="my-2 p-4">
+            <div class="row">
+                <div class="col-4" style="position:relative;top:35px">
+                    <h4 class="text-center gray" id="yourDonations">Ethers</h4>
+                    <h4 class="text-center">Your Donations</h4>
+                </div>
+                <div class="col-4" style="position:relative;top:35px">
+                    <h4 class="text-center gray" id="TotalDonations">Ethers</h4>
+                    <h4 class="text-center">Total Donations</h4>
+                </div>
+                <div class="col-4" style="position:relative;top:35px">
+                    <h4 class="text-center gray" id="TotalProposals"></h4>
+                    <h4 class="text-center">Total Proposals</h4>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 p-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h4 id="heading"></h4>
+                </div>
+                <div class="col-12 text-center">
+                    <div class=" d-inline-block">
+                        <div class="time">
+                            <h3 id="Hours"></h3>
+                        </div>
+                        <div>
+                            <h6>Hours</h6>
+                        </div>
+                    </div>
+                    <div class=" d-inline-block">
+                        <div class="time">
+                            <h3 id="Minutes"></h3>
+                        </div>
+                        <div>
+                            <h6>Minutes</h4>
+                        </div>
+                    </div>
+                    <div class=" d-inline-block">
+                        <div class="time">
+                            <h3 id="Seconds"></h3>
+                        </div>
+                        <div>
+                            <h6>Seconds</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 p-4 border">
+            <h4 class="mb-4" for="exampleInputEmail1">Submit Proposal for Charity</h4>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Total Votes</th>
+                    </tr>
+                </thead>
+                <tbody  id="table">
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="my-5 p-4 border">
+                    <form>
+                        <div class="form-group">
+                            <h4 for="exampleInputEmail1">Donate in Charity</h4><br>
+                            <input type="number" class="form-control" id="donateAmount" placeholder="Enter amount to donate">
+                            <small id="emailHelp" class="form-text text-muted">This amount will be donated to the
+                                Charity
+                                Poll</small>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="buildTx()">Donate</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class=" mb-5 p-4 border">
+
+                    <form>
+                        <div class="form-group">
+                            <h4 for="exampleInputEmail1">Submit Proposal for Charity</h4><br>
+                            <input type="text" class="form-control" id="proposalName" placeholder="Your Name">
+                            <small id="emailHelp" class="form-text text-muted">Enter your name</small><br>
+                            <input type="text" class="form-control" id="proposalDes" placeholder="Description for proposal">
+                            <small id="emailHelp" class="form-text text-muted">Write a message why you wants to submit
+                                charity proposal</small><br>
+                            <input type="number" class="form-control" id="proposalAmount" placeholder="Amount">
+                            <small id="emailHelp" class="form-text text-muted">Enter amount you wants to take</small><br>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="submitProposal()">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12">
+                    <div class="my-5 p-4 border">
+                        <form>
+                            <div class="form-group">
+                                <h4 for="exampleInputEmail1">Up Vote</h4><br>
+                                <input type="text" class="form-control" id="upVoteId" placeholder="Enter ID">
+                                <small id="emailHelp" class="form-text text-muted">Enter id to whome you wants to vote</small>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="upVote()">Up Vote</button>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
