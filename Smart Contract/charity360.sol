@@ -58,7 +58,7 @@ contract Charity360 {
       balances[msg.sender] = msg.value;
   }
   
-  /**@dev fallback function to accept direct ethers in contract.
+  /**@dev function to handle submittedProposals.
    * block.timestamp gives current time in unix timestamp
    * msg.sender is the one who initiated the transaction
    * this.balance returns the total amount of ethers in contract
